@@ -6,7 +6,7 @@
 #    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/11 16:50:07 by tvermeil          #+#    #+#              #
-#    Updated: 2016/05/20 15:37:12 by tvermeil         ###   ########.fr        #
+#    Updated: 2016/05/24 15:33:41 by tvermeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_PATH = .
 INC_PATH = ../include/libft
 OBJ_PATH = ../obj/libft
 
-CC = gcc
+CC = gcc -g
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I $(INC_PATH) -I $(INC_PATH)/printf
 
@@ -65,6 +65,7 @@ SRC_NAME =		ft_memset.c \
    		    	ft_strjoin_free.c \
    		    	ft_strtrim.c \
    		    	ft_strsplit.c \
+				ft_strsanitize.c \
    		    	ft_itoa.c \
 				ft_numlength.c \
    		    	ft_itoa_base.c \
