@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 12:46:53 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/25 15:46:23 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/25 19:20:29 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,11 @@
 # define PROMPT "$> "
 
 char	*find_binary(char **env, char *bin_name);
+int		handle_builtins(char **args, char ***env);
+void	print_env(char **env);
+char	*get_env_var(char *var, char **env);
+char	**copy_env(char **env, int difference);
+void	add_env_var(char **args, char ***env);
+void	rem_env_var(char **args, char ***env);
 
 #endif
