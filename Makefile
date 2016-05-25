@@ -6,7 +6,7 @@
 #    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 19:13:31 by tvermeil          #+#    #+#              #
-#    Updated: 2016/05/24 16:12:51 by tvermeil         ###   ########.fr        #
+#    Updated: 2016/05/25 15:52:12 by tvermeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ LDFLAGS = -L$(LFT_PATH)
 LDLIBS = -lft
 
 SRC_NAME =		main.c \
+				path.c \
 
 HEADER_NAME = 	minishell.h \
 

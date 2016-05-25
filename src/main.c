@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 12:35:41 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/24 17:12:48 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/25 15:51:40 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 void	execute(char **arg_list, char **env)
 {
 	pid_t	pid;
-	//int		res;
+	char	*bin_path;
+	//int	res;
 
-	(void)arg_list;
-	(void)env;
+	if ((bin_path = find_binary(env, arg_list[0])) == NULL)
+		return ;
 	if ((pid = fork()) == 0)
 	{
-		execve(ft_strjoin("/bin/", arg_list[0]), arg_list, env);
+		execve(bin_path, arg_list, env);
 		exit(0);
 	}
 	else
