@@ -6,17 +6,18 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 14:43:26 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/24 15:45:06 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 17:34:35 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-static inline int is_removable_char(char c)
+
+static inline int	is_removable_char(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\0');
 }
 
-static int	get_sanitized_size(char *str)
+static int			get_sanitized_size(char *str)
 {
 	int		size;
 	int		i;
@@ -35,16 +36,13 @@ static int	get_sanitized_size(char *str)
 	return (size);
 }
 
-char		*ft_strsanitize(char *str)
+char				*ft_strsanitize(char *str)
 {
 	char	*new;
 	int		size;
 	int		i;
 
-	if (str == NULL)
-		return NULL;
-	size = get_sanitized_size(str);
-	if (size == 0)
+	if (str == NULL || (size = get_sanitized_size(str)) == 0)
 		return (NULL);
 	new = (char *)malloc(size + 1);
 	if (new == NULL)

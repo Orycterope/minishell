@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 12:35:41 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/26 17:18:54 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 17:40:41 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,14 @@ int		main(int ac, char **av, char **env)
 	ft_putendl("exit");
 	free_tab(env);
 	return (0);
+}
+
+void	free_tab(char **tab)
+{
+	int		i;
+
+	i = -1;
+	while (tab[++i] != NULL)
+		free(tab[i]);
+	free(tab);
 }

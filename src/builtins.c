@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:03:53 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/26 15:54:38 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 17:37:22 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ static void	where(char **args, char **env)
 		ft_putendl("usage: where program");
 		return ;
 	}
-	else if (ft_strcmp(args[1], "cd") == 0 || ft_strcmp(args[1], "env") == 0 ||
-			ft_strcmp(args[1], "setenv") == 0 ||ft_strcmp(args[1], "unsetenv") == 0 ||
-			ft_strcmp(args[1], "where") == 0)
+	else if (ft_strcmp(args[1], "cd") == 0 || ft_strcmp(args[1], "env") == 0
+			|| ft_strcmp(args[1], "setenv") == 0
+			|| ft_strcmp(args[1], "unsetenv") == 0
+			|| ft_strcmp(args[1], "where") == 0)
 		path = ft_strdup("shell built-in command");
 	else
 		path = find_binary(env, args[1]);
@@ -50,14 +51,14 @@ static void	change_directory(char **args, char **env)
 	}
 }
 
-static void exit_cmd(char **args, char **env)
+static void	exit_cmd(char **args, char **env)
 {
 	free_tab(env);
 	free_tab(args);
 	exit(0);
 }
 
-int	handle_builtins(char **args, char ***env)
+int			handle_builtins(char **args, char ***env)
 {
 	if (ft_strcmp(args[0], "cd") == 0)
 		change_directory(args, *env);

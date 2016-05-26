@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 14:54:02 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/26 15:37:35 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 17:38:14 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	**get_path_tab(char **env)
 	return (NULL);
 }
 
-static void free_path_tab(char **path_tab)
+static void	free_path_tab(char **path_tab)
 {
 	int		i;
 
@@ -74,5 +74,5 @@ char		*find_binary(char **env, char *bin_name)
 	path_tab = get_path_tab(env);
 	if (path_tab == NULL)
 		return (NULL);
-	return find_bin_in_path(bin_name, path_tab);
+	return (find_bin_in_path(bin_name, path_tab));
 }
