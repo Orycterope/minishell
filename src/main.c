@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 12:35:41 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/26 15:52:43 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 17:18:54 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,22 @@
 #include "libft.h"
 #include "get_next_line.h"
 #include <unistd.h>
+#include <signal.h>
+
+int		g_child_pid = 0;
+
+void	sig_handler(int sig)
+{
+	if (g_child_pid != 0)
+		kill(g_child_pid, sig);
+	ft_putchar('\n');
+	if (g_child_pid == 0)
+		ft_putstr(PROMPT);
+}
 
 void	execute(char **arg_list, char ***env)
 {
-	pid_t	pid;
 	char	*bin_path;
-	//int	res;
 
 	if (handle_builtins(arg_list, env) != 0)
 		return ;
@@ -28,9 +38,10 @@ void	execute(char **arg_list, char ***env)
 		ft_printf("minishell: no executable file found: %s\n", arg_list[0]);
 		return ;
 	}
-	if ((pid = fork()) == 0)
+	if ((g_child_pid = fork()) == 0)
 	{
-		execve(bin_path, arg_list, *env);
+		if (execve(bin_path, arg_list, *env))
+			ft_printf("minishell: error during execution of %s\n", bin_path);
 		exit(0);
 	}
 	else
@@ -38,6 +49,7 @@ void	execute(char **arg_list, char ***env)
 		wait(NULL);
 		free(bin_path);
 	}
+	g_child_pid = 0;
 }
 
 int		main(int ac, char **av, char **env)
@@ -50,6 +62,7 @@ int		main(int ac, char **av, char **env)
 	(void)av;
 	ft_putstr(PROMPT);
 	env = copy_env(env, 0);
+	signal(SIGINT, sig_handler);
 	while (get_next_line(0, &line_command))
 	{
 		sanitized_line_command = ft_strsanitize(line_command);
