@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 14:54:02 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/25 15:59:25 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 14:21:27 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ char	*find_binary(char **env, char *bin_name)
 			return (attempt);
 		free(attempt);
 	}
-	ft_printf("minishell: no executable file found: %s\n", bin_name);
 	return (NULL);
 }

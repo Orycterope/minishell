@@ -6,13 +6,34 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:03:53 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/25 19:19:53 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 14:19:24 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minishell.h"
 #include <unistd.h>
+
+static void	where(char **args, char **env)
+{
+	char	*path;
+
+	if (args[1] == NULL)
+	{
+		ft_putendl("usage: where program");
+		return ;
+	}
+	else if (ft_strcmp(args[1], "cd") == 0 || ft_strcmp(args[1], "env") == 0 ||
+			ft_strcmp(args[1], "setenv") == 0 ||ft_strcmp(args[1], "unsetenv") == 0 ||
+			ft_strcmp(args[1], "where") == 0)
+		path = ft_strdup("shell built-in command");
+	else
+		path = find_binary(env, args[1]);
+	if (path == NULL)
+		path = ft_strdup("not found");
+	ft_printf("%s: %s\n", args[1], path);
+	free(path);
+}
 
 static void	change_directory(char **args, char **env)
 {
@@ -39,6 +60,8 @@ int	handle_builtins(char **args, char ***env)
 		add_env_var(args, env);
 	else if (ft_strcmp(args[0], "unsetenv") == 0)
 		rem_env_var(args, env);
+	else if (ft_strcmp(args[0], "where") == 0)
+		where(args, *env);
 	else
 		return (0);
 	return (1);
