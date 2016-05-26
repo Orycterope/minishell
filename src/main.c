@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 12:35:41 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/26 14:22:03 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 14:54:29 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	execute(char **arg_list, char ***env)
 	else
 	{
 		wait(NULL);
+		free(bin_path);
 	}
 }
 
@@ -62,9 +63,11 @@ int		main(int ac, char **av, char **env)
 			i = 0;
 			while (arg_list[i])
 				free(arg_list[i++]);
+			free(arg_list);
 		}
 		ft_putstr(PROMPT);
 	}
 	ft_putendl("exit");
+	free_env(&env);
 	return (0);
 }

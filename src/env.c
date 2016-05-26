@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 18:02:14 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/25 19:31:44 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 15:18:08 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,13 @@ char	**copy_env(char **env, int difference)
 	new = (char **)malloc(sizeof(char *) * new_length);
 	if (new == NULL)
 		return (NULL);
-	i = -1;
-	while (++i < length)
-		new[i] = env[i];
+	if (difference >= 0)
+	{
+		i = -1;
+		while (++i < length - 1)
+			new[i] = (difference > 0) ? env[i] : ft_strdup(env[i]);
+		new[i] = NULL;
+	}
 	return (new);
 }
 
@@ -100,7 +104,7 @@ void	rem_env_var(char **args, char ***env)
 
 	if (args[1] == NULL)
 	{
-		ft_putendl("setenv: not enough arguments");
+		ft_putendl("unsetenv: not enough arguments");
 		return ;
 	}
 	if ((var = get_env_var(args[1], *env)) == NULL)
@@ -115,6 +119,18 @@ void	rem_env_var(char **args, char ***env)
 	while ((*env)[++i] != NULL)
 		new[i - 1] = (*env)[i];
 	new[i - 1] = NULL;
+	free(var);
 	free(*env);
 	*env = new;
+}
+
+void	free_env(char ***env)
+{
+	int		i;
+
+	i = -1;
+	while ((*env)[++i] != NULL)
+		free((*env)[i]);
+	free(*env);
+	*env = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 12:46:53 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/25 19:20:29 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 14:44:07 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ char	*get_env_var(char *var, char **env);
 char	**copy_env(char **env, int difference);
 void	add_env_var(char **args, char ***env);
 void	rem_env_var(char **args, char ***env);
+void	free_env(char ***env);
 
 #endif
