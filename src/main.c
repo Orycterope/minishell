@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 12:35:41 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/26 14:54:29 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 15:52:43 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int		main(int ac, char **av, char **env)
 	char	*line_command;
 	char	*sanitized_line_command;
 	char	**arg_list;
-	int		i;
 
 	(void)ac;
 	(void)av;
@@ -60,14 +59,11 @@ int		main(int ac, char **av, char **env)
 			arg_list = ft_strsplit(sanitized_line_command, ' ');
 			free(sanitized_line_command);
 			execute(arg_list, &env);
-			i = 0;
-			while (arg_list[i])
-				free(arg_list[i++]);
-			free(arg_list);
+			free_tab(arg_list);
 		}
 		ft_putstr(PROMPT);
 	}
 	ft_putendl("exit");
-	free_env(&env);
+	free_tab(env);
 	return (0);
 }

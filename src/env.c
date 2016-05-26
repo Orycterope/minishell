@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 18:02:14 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/26 15:18:08 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/26 15:52:17 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,13 +124,12 @@ void	rem_env_var(char **args, char ***env)
 	*env = new;
 }
 
-void	free_env(char ***env)
+void	free_tab(char **tab)
 {
 	int		i;
 
 	i = -1;
-	while ((*env)[++i] != NULL)
-		free((*env)[i]);
-	free(*env);
-	*env = NULL;
+	while (tab[++i] != NULL)
+		free(tab[i]);
+	free(tab);
 }
