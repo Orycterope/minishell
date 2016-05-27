@@ -6,7 +6,7 @@
 #    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 19:13:31 by tvermeil          #+#    #+#              #
-#    Updated: 2016/05/25 18:19:46 by tvermeil         ###   ########.fr        #
+#    Updated: 2016/05/27 15:50:42 by tvermeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ HEADER_FILES = $(addprefix $(HEADER_PATH)/,$(HEADER_NAME))
 
 all: $(ROOT)/libft.a $(DST)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER_FILES)
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER_FILES) libft.a
 	@mkdir -p $(OBJ_PATH)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	@echo -n .
