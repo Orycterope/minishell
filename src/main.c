@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 12:35:41 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/26 17:40:41 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/28 14:38:31 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	sig_handler(int sig)
 	ft_putchar('\n');
 	if (g_child_pid == 0)
 		ft_putstr(PROMPT);
+	g_child_pid = 0;
 }
 
 void	execute(char **arg_list, char ***env)
