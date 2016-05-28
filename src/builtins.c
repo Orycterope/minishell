@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:03:53 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/26 17:37:22 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/28 15:09:24 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			handle_builtins(char **args, char ***env)
 	else if (ft_strcmp(args[0], "env") == 0)
 		print_env(*env);
 	else if (ft_strcmp(args[0], "setenv") == 0)
-		add_env_var(args, env);
+		set_env_var(args[1], env);
 	else if (ft_strcmp(args[0], "unsetenv") == 0)
 		rem_env_var(args, env);
 	else if (ft_strcmp(args[0], "where") == 0)

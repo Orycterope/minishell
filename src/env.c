@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 18:02:14 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/26 17:39:00 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/28 15:14:22 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,50 +47,18 @@ char	*get_env_var(char *var, char **env)
 		return (env[i] + length);
 }
 
-char	**copy_env(char **env, int difference)
-{
-	char	**new;
-	int		length;
-	int		new_length;
-	int		i;
-
-	length = 0;
-	while (env[length] != NULL)
-		length++;
-	length++;
-	new_length = length + difference;
-	new = (char **)malloc(sizeof(char *) * new_length);
-	if (new == NULL)
-		return (NULL);
-	if (difference >= 0)
-	{
-		i = -1;
-		while (++i < length - 1)
-			new[i] = (difference > 0) ? env[i] : ft_strdup(env[i]);
-		new[i] = NULL;
-	}
-	return (new);
-}
-
-void	add_env_var(char **args, char ***env)
+void	add_env_var(char *arg, char ***env)
 {
 	char	**new;
 	int		i;
 
-	if (args[1] == NULL)
-	{
-		ft_putendl("setenv: not enough arguments");
-		return ;
-	}
-	if (ft_strchr(args[1], '=') == NULL)
-		return ;
 	new = copy_env(*env, 1);
 	if (new == NULL)
 		return ;
 	i = 0;
 	while ((*env)[i] != NULL)
 		i++;
-	new[i] = ft_strdup(args[1]);
+	new[i] = ft_strdup(arg);
 	new[i + 1] = NULL;
 	free(*env);
 	*env = new;
@@ -122,4 +90,30 @@ void	rem_env_var(char **args, char ***env)
 	free(var);
 	free(*env);
 	*env = new;
+}
+
+void	set_env_var(char *arg, char ***env)
+{
+	int		i;
+	char	*sub;
+
+	if (arg == NULL)
+	{
+		ft_putendl("setenv: not enough arguments");
+		return ;
+	}
+	if (ft_strchr(arg, '=') == NULL || ft_strchr(arg, '=') == arg)
+		return ;
+	sub = ft_strsub(arg, 0, ft_strchr(arg, '=') - arg);
+	i = -1;
+	while ((*env)[++i])
+		if (ft_strstr((*env)[i], sub) == (*env)[i])
+		{
+			free(sub);
+			free((*env)[i]);
+			(*env)[i] = ft_strdup(arg);
+			return ;
+		}
+	free(sub);
+	add_env_var(arg, env);
 }

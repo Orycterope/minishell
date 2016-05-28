@@ -6,7 +6,7 @@
 #    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/18 19:13:31 by tvermeil          #+#    #+#              #
-#    Updated: 2016/05/27 15:50:42 by tvermeil         ###   ########.fr        #
+#    Updated: 2016/05/28 15:16:03 by tvermeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ_PATH = $(ROOT)/$(OBJ_FOLDER)
 DST_PATH = $(ROOT)
 LFT_PATH = $(ROOT)
 
-CC = gcc -g
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = $(addprefix -I ,$(INC_PATH))
 LDFLAGS = -L$(LFT_PATH)
@@ -34,6 +34,7 @@ SRC_NAME =		main.c \
 				path.c \
 				builtins.c \
 				env.c \
+				env2.c \
 
 HEADER_NAME = 	minishell.h \
 
