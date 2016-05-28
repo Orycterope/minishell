@@ -6,7 +6,7 @@
 /*   By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:03:53 by tvermeil          #+#    #+#             */
-/*   Updated: 2016/05/28 15:09:24 by tvermeil         ###   ########.fr       */
+/*   Updated: 2016/05/28 17:03:18 by tvermeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ static void	exit_cmd(char **args, char **env)
 	exit(0);
 }
 
+static void	clear_cmd(void)
+{
+	ft_putstr("\x1B[2J");
+	ft_putstr("\x1B[1H");
+}
+
 int			handle_builtins(char **args, char ***env)
 {
 	if (ft_strcmp(args[0], "cd") == 0)
@@ -72,6 +78,8 @@ int			handle_builtins(char **args, char ***env)
 		where(args, *env);
 	else if (ft_strcmp(args[0], "exit") == 0)
 		exit_cmd(args, *env);
+	else if (ft_strcmp(args[0], "clear") == 0)
+		clear_cmd();
 	else
 		return (0);
 	return (1);
